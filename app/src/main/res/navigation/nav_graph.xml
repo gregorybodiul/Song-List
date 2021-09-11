@@ -12,6 +12,8 @@
         <action
             android:id="@+id/action_splashFragment_to_vertListFragment"
             app:destination="@id/vertListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -22,7 +24,11 @@
         tools:layout="@layout/fragment_vert_list" >
         <action
             android:id="@+id/action_vertListFragment_to_horListFragment"
-            app:destination="@id/horListFragment" />
+            app:destination="@id/horListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/vertListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/horListFragment"
@@ -31,6 +37,10 @@
         tools:layout="@layout/fragment_hor_list" >
         <action
             android:id="@+id/action_horListFragment_to_vertListFragment"
-            app:destination="@id/vertListFragment" />
+            app:destination="@id/vertListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@id/horListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

@@ -1,5 +1,6 @@
 package com.example.songlist;
 
+import android.animation.ObjectAnimator;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
@@ -35,7 +36,21 @@ public class SplashFragment extends Fragment {
         TextView artistName = view.findViewById(R.id.tv_artist_name);
         TextView songName = view.findViewById(R.id.tv_song_name);
 
-        Random random = new Random(34);
+        ObjectAnimator animCover = ObjectAnimator.ofFloat(imageView, "alpha", 0, 1);
+        animCover.setDuration(2000);
+        animCover.start();
+
+        ObjectAnimator animTvSong = ObjectAnimator.ofFloat(songName, "alpha", 0, 1);
+        animTvSong.setStartDelay(500);
+        animTvSong.setDuration(2000);
+        animTvSong.start();
+
+        ObjectAnimator animTvArtist = ObjectAnimator.ofFloat(artistName, "alpha", 0, 1);
+        animTvArtist.setStartDelay(1000);
+        animTvArtist.setDuration(2000);
+        animTvArtist.start();
+
+        Random random = new Random();
         int rndIndex = random.nextInt(playlist.getCountSong());
 
         imageView.setImageDrawable(playlist.getCover(rndIndex));
@@ -43,7 +58,7 @@ public class SplashFragment extends Fragment {
         songName.setText(playlist.getSongName(rndIndex));
 
         Handler handler = new Handler();
-        handler.postDelayed(() -> Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_vertListFragment),2000);
+        handler.postDelayed(() -> Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_vertListFragment),6000);
 
         return view;
     }
