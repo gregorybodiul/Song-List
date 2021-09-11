@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.songlist.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_vertListFragment"
+            app:destination="@id/vertListFragment"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/vertListFragment"
+        android:name="com.example.songlist.VertListFragment"
+        android:label="fragment_vert_list"
+        tools:layout="@layout/fragment_vert_list" >
+        <action
+            android:id="@+id/action_vertListFragment_to_horListFragment"
+            app:destination="@id/horListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/horListFragment"
+        android:name="com.example.songlist.HorListFragment"
+        android:label="fragment_hor_list"
+        tools:layout="@layout/fragment_hor_list" >
+        <action
+            android:id="@+id/action_horListFragment_to_vertListFragment"
+            app:destination="@id/vertListFragment" />
+    </fragment>
+</navigation>
