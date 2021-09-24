@@ -36,30 +36,27 @@ public class SplashFragment extends Fragment {
         TextView artistName = view.findViewById(R.id.tv_artist_name);
         TextView songName = view.findViewById(R.id.tv_song_name);
 
-        ObjectAnimator animCover = ObjectAnimator.ofFloat(imageView, "alpha", 0, 1);
-        animCover.setDuration(2000);
-        animCover.start();
-
-        ObjectAnimator animTvSong = ObjectAnimator.ofFloat(songName, "alpha", 0, 1);
-        animTvSong.setStartDelay(500);
-        animTvSong.setDuration(2000);
-        animTvSong.start();
-
-        ObjectAnimator animTvArtist = ObjectAnimator.ofFloat(artistName, "alpha", 0, 1);
-        animTvArtist.setStartDelay(1000);
-        animTvArtist.setDuration(2000);
-        animTvArtist.start();
-
-        Random random = new Random();
-        int rndIndex = random.nextInt(playlist.getCountSong());
-
-        imageView.setImageDrawable(playlist.getCover(rndIndex));
-        artistName.setText(playlist.getArtistName(rndIndex));
-        songName.setText(playlist.getSongName(rndIndex));
-
+        animateView(imageView, "alpha", 0, 1,0,2000);
+        animateView(songName, "alpha", 0, 1,500,2000);
+        animateView(artistName, "alpha", 0, 1,1000,2000);
+        randomSong(playlist, imageView,songName,artistName);
         Handler handler = new Handler();
         handler.postDelayed(() -> Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_vertListFragment),6000);
-
         return view;
+    }
+
+    private void animateView(View view, String property, int valueMin, int valueMax, int startDelay, int duration){
+        ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(view, property, valueMin, valueMax);
+        objectAnimator.setStartDelay(startDelay);
+        objectAnimator.setDuration(duration);
+        objectAnimator.start();
+    }
+
+    private void randomSong(Playlist playlist,ImageView cover, TextView textArtist, TextView textSong){
+        Random random = new Random();
+        int rndIndex = random.nextInt(playlist.getCountSong());
+        cover.setImageDrawable(playlist.getCover(rndIndex));
+        textArtist.setText(playlist.getArtistName(rndIndex));
+        textSong.setText(playlist.getSongName(rndIndex));
     }
 }
